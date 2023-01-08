@@ -8,10 +8,11 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Proyecto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     private String nombreP;
     @NotNull
@@ -78,6 +79,5 @@ public class Proyecto {
     public void setImgP(String imgP) {
         this.imgP = imgP;
     }
-    
-    
+
 }

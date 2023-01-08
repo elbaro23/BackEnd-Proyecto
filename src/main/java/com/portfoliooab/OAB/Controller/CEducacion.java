@@ -3,7 +3,7 @@ package com.portfoliooab.OAB.Controller;
 import com.portfoliooab.OAB.Dto.dtoEducacion;
 import com.portfoliooab.OAB.Entity.Educacion;
 import com.portfoliooab.OAB.Security.Controller.Mensaje;
-import com.portfoliooab.OAB.Service.Seducacion;
+import com.portfoliooab.OAB.Service.SEducacion;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CEducacion {
 
     @Autowired
-    Seducacion sEducacion;
+    SEducacion sEducacion;
 
     @GetMapping("/lista")
     public ResponseEntity<List<Educacion>> list() {
@@ -56,19 +56,24 @@ public class CEducacion {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducacion dtoeducacion) {
         //El Nombre es obligatorio
-        if (StringUtils.isBlank(dtoeducacion.getNombreE())) {
+        if (StringUtils.isBlank(dtoeducacion.getNombreEd())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         //El Nombre no se puede repetir
-        if (sEducacion.existsByNombreE(dtoeducacion.getNombreE())) {
+        if (sEducacion.existsByNombreEd(dtoeducacion.getNombreEd())) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         //La Descripcion es obligatorio
-        if (StringUtils.isBlank(dtoeducacion.getDescripcionE())) {
+        if (StringUtils.isBlank(dtoeducacion.getDescripcionEd())) {
             return new ResponseEntity(new Mensaje("La descripción es obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
-        Educacion educacion = new Educacion(dtoeducacion.getNombreE(), dtoeducacion.getDescripcionE());
+        Educacion educacion = new Educacion(
+                dtoeducacion.getNombreEd(),
+                dtoeducacion.getDescripcionEd(),
+                dtoeducacion.getPeriodoEd(),
+                dtoeducacion.getLinkEd(),
+                dtoeducacion.getImgEd());
         sEducacion.save(educacion);
         return new ResponseEntity(new Mensaje("Educación creada"), HttpStatus.OK);
 
@@ -81,21 +86,24 @@ public class CEducacion {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
         //Compara nombre de experiencias
-        if (sEducacion.existsByNombreE(dtoeducacion.getNombreE()) && sEducacion.getByNombreE(dtoeducacion.getNombreE()).get().getId() != id) {
+        if (sEducacion.existsByNombreEd(dtoeducacion.getNombreEd()) && sEducacion.getByNombreE(dtoeducacion.getNombreEd()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         //El Nombre es obligatorio
-        if (StringUtils.isBlank(dtoeducacion.getNombreE())) {
+        if (StringUtils.isBlank(dtoeducacion.getNombreEd())) {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
         }
         //La Descripción es obligatorio
-        if (StringUtils.isBlank(dtoeducacion.getDescripcionE())) {
+        if (StringUtils.isBlank(dtoeducacion.getDescripcionEd())) {
             return new ResponseEntity(new Mensaje("La Descripción es obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
         Educacion educacion = sEducacion.getOne(id).get();
-        educacion.setNombreE(dtoeducacion.getNombreE());
-        educacion.setDescripcionE(dtoeducacion.getDescripcionE());
+        educacion.setNombreEd(dtoeducacion.getNombreEd());
+        educacion.setDescripcionEd(dtoeducacion.getDescripcionEd());
+        educacion.setPeriodoEd(dtoeducacion.getPeriodoEd());
+        educacion.setLinkEd(dtoeducacion.getLinkEd());
+        educacion.setImgEd(dtoeducacion.getImgEd());
 
         sEducacion.save(educacion);
 

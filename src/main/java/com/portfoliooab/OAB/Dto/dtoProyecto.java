@@ -2,18 +2,17 @@ package com.portfoliooab.OAB.Dto;
 
 import javax.validation.constraints.NotBlank;
 
-
 public class dtoProyecto {
-    
+
     @NotBlank
     private String nombreP;
     @NotBlank
     private String descripcionP;
-    
+
     private String periodoP;
-    
+
     private String linkP;
-    
+
     private String imgP;
 
     public dtoProyecto() {

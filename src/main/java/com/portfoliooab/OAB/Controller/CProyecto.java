@@ -22,16 +22,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/proyecto")
 @CrossOrigin(origins = {"https://frontend-proyecto-oab.web.app", "http://localhost:4200"})
+
 public class CProyecto {
+
     @Autowired
     SProyecto sProyecto;
-    
+
     @GetMapping("/lista")
     public ResponseEntity<List<Proyecto>> list() {
         List<Proyecto> list = sProyecto.list();
-        return new ResponseEntity(list, HttpStatus.OK);   
+        return new ResponseEntity(list, HttpStatus.OK);
     }
-    
+
     @GetMapping("/detail/{id}")
     public ResponseEntity<Proyecto> getById(@PathVariable("id") int id) {
         if (!sProyecto.existsById(id)) {
@@ -40,7 +42,7 @@ public class CProyecto {
         Proyecto proyecto = sProyecto.getOne(id).get();
         return new ResponseEntity(proyecto, HttpStatus.OK);
     }
-    
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sProyecto.existsById(id)) {
@@ -49,7 +51,7 @@ public class CProyecto {
         sProyecto.delete(id);
         return new ResponseEntity(new Mensaje("Proyecto eliminado"), HttpStatus.OK);
     }
-    
+
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoProyecto dtoproyecto) {
         //El Nombre es obligatorio
@@ -64,18 +66,18 @@ public class CProyecto {
         if (StringUtils.isBlank(dtoproyecto.getDescripcionP())) {
             return new ResponseEntity(new Mensaje("La descripción es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        
+
         Proyecto proyecto = new Proyecto(
-                dtoproyecto.getNombreP(), 
-                dtoproyecto.getDescripcionP(), 
-                dtoproyecto.getPeriodoP(), 
-                dtoproyecto.getLinkP(), 
+                dtoproyecto.getNombreP(),
+                dtoproyecto.getDescripcionP(),
+                dtoproyecto.getPeriodoP(),
+                dtoproyecto.getLinkP(),
                 dtoproyecto.getImgP());
         sProyecto.save(proyecto);
         return new ResponseEntity(new Mensaje("Proyecto creada"), HttpStatus.OK);
 
     }
-    
+
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoProyecto dtoproyecto) {
         //Validamos si existe el ID

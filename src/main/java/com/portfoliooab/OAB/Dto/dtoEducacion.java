@@ -5,31 +5,65 @@ import javax.validation.constraints.NotBlank;
 public class dtoEducacion {
 
     @NotBlank
-    private String nombreE;
-    private String descripcionE;
+    private String nombreEd;
+    @NotBlank
+    private String descripcionEd;
+
+    private String periodoEd;
+
+    private String linkEd;
+
+    private String imgEd;
 
     public dtoEducacion() {
     }
 
-    public dtoEducacion(String nombreE, String descripcionE) {
-        this.nombreE = nombreE;
-        this.descripcionE = descripcionE;
+    public dtoEducacion(String nombreEd, String descripcionEd, String periodoEd, String linkEd, String imgEd) {
+        this.nombreEd = nombreEd;
+        this.descripcionEd = descripcionEd;
+        this.periodoEd = periodoEd;
+        this.linkEd = linkEd;
+        this.imgEd = imgEd;
     }
 
-    public String getNombreE() {
-        return nombreE;
+    public String getNombreEd() {
+        return nombreEd;
     }
 
-    public void setNombreE(String nombreE) {
-        this.nombreE = nombreE;
+    public void setNombreEd(String nombreEd) {
+        this.nombreEd = nombreEd;
     }
 
-    public String getDescripcionE() {
-        return descripcionE;
+    public String getDescripcionEd() {
+        return descripcionEd;
     }
 
-    public void setDescripcionE(String descripcionE) {
-        this.descripcionE = descripcionE;
+    public void setDescripcionEd(String descripcionEd) {
+        this.descripcionEd = descripcionEd;
+    }
+
+    public String getPeriodoEd() {
+        return periodoEd;
+    }
+
+    public void setPeriodoEd(String periodoEd) {
+        this.periodoEd = periodoEd;
+    }
+
+    public String getLinkEd() {
+        return linkEd;
+    }
+
+    public void setLinkEd(String linkEd) {
+        this.linkEd = linkEd;
+    }
+
+    public String getImgEd() {
+        return imgEd;
+    }
+
+    public void setImgEd(String imgEd) {
+        this.imgEd = imgEd;
     }
 
 }

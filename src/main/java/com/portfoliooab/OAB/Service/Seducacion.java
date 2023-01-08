@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class Seducacion {
+public class SEducacion {
 
     @Autowired
     REducacion rEducacion;
@@ -23,8 +23,8 @@ public class Seducacion {
         return rEducacion.findById(id);
     }
 
-    public Optional<Educacion> getByNombreE(String nombreE) {
-        return rEducacion.findByNombreE(nombreE);
+    public Optional<Educacion> getByNombreE(String nombreEd) {
+        return rEducacion.findByNombreEd(nombreEd);
     }
 
     public void save(Educacion educacion) {
@@ -39,7 +39,7 @@ public class Seducacion {
         return rEducacion.existsById(id);
     }
 
-    public boolean existsByNombreE(String nombreE) {
-        return rEducacion.existsByNombreE(nombreE);
+    public boolean existsByNombreEd(String nombreEd) {
+        return rEducacion.existsByNombreEd(nombreEd);
     }
 }
