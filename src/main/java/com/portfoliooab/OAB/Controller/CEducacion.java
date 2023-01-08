@@ -86,7 +86,7 @@ public class CEducacion {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
         //Compara nombre de experiencias
-        if (sEducacion.existsByNombreEd(dtoeducacion.getNombreEd()) && sEducacion.getByNombreE(dtoeducacion.getNombreEd()).get().getId() != id) {
+        if (sEducacion.existsByNombreEd(dtoeducacion.getNombreEd()) && sEducacion.getByNombreEd(dtoeducacion.getNombreEd()).get().getId() != id) {
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         //El Nombre es obligatorio
