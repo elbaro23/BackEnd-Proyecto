@@ -8,13 +8,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 @Transactional
 public class SEducacion {
+    
 
     @Autowired
     REducacion rEducacion;
-
+    
     public List<Educacion> list() {
         return rEducacion.findAll();
     }
