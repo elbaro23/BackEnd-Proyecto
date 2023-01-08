@@ -59,10 +59,7 @@ public class CEducacion {
         if (StringUtils.isBlank(dtoeducacion.getNombreEd())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        //El Nombre no se puede repetir
-        if (sEducacion.existsByNombreEd(dtoeducacion.getNombreEd())) {
-            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
         //La Descripcion es obligatorio
         if (StringUtils.isBlank(dtoeducacion.getDescripcionEd())) {
             return new ResponseEntity(new Mensaje("La descripción es obligatorio"), HttpStatus.BAD_REQUEST);

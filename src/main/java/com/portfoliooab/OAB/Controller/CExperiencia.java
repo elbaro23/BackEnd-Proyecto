@@ -58,10 +58,7 @@ public class CExperiencia {
         if (StringUtils.isBlank(dtoexperiencia.getNombreE())) {
             return new ResponseEntity(new Mensaje("El Nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        //El Nombre no se puede repetir
-        if (sExperiencia.existsByNombreE(dtoexperiencia.getNombreE())) {
-            return new ResponseEntity(new Mensaje("El Nombre ya existe"), HttpStatus.BAD_REQUEST);
-        }
+        
         //La Descripcion es obligatorio
         if (StringUtils.isBlank(dtoexperiencia.getDescripcionE())) {
             return new ResponseEntity(new Mensaje("La Descripción es obligatoria"), HttpStatus.BAD_REQUEST);
