@@ -27,8 +27,8 @@ public class SExperiencia {
         return rExperiencia.findByNombreE(nombreE);
     }
 
-    public void save(Experiencia expe) {
-        rExperiencia.save(expe);
+    public void save(Experiencia experiencia) {
+        rExperiencia.save(experiencia);
     }
 
     public void delete(int id) {

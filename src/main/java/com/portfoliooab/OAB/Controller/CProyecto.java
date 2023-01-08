@@ -73,9 +73,10 @@ public class CProyecto {
                 dtoproyecto.getPeriodoP(),
                 dtoproyecto.getLinkP(),
                 dtoproyecto.getImgP());
+        
         sProyecto.save(proyecto);
+        
         return new ResponseEntity(new Mensaje("Proyecto creada"), HttpStatus.OK);
-
     }
 
     @PutMapping("/update/{id}")
