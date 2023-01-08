@@ -66,10 +66,6 @@ public class PersonaController {
         if (StringUtils.isBlank(dtopersona.getDescripcion())) {
             return new ResponseEntity(new Mensaje("El campo Descripción no puede estar vacio"), HttpStatus.BAD_REQUEST);
         }
-        //La Imagen es obligatorio
-        if (StringUtils.isBlank(dtopersona.getImg())) {
-            return new ResponseEntity(new Mensaje("El campo Imagen no puede estar vacio"), HttpStatus.BAD_REQUEST);
-        }
 
         Persona persona = personaService.getOne(id).get();
 
