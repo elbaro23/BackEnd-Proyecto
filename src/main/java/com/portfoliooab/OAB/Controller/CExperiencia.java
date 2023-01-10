@@ -82,6 +82,10 @@ public class CExperiencia {
         if (!sExperiencia.existsById(id)) {
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         }
+        //Compara nombre de experiencias
+        if (sExperiencia.existsByNombreE(dtoexperiencia.getNombreE()) && sExperiencia.getByNombreE(dtoexperiencia.getNombreE()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Esa Experiencia ya existe"), HttpStatus.BAD_REQUEST);
+        }
         //El Nombre es obligatorio
         if (StringUtils.isBlank(dtoexperiencia.getNombreE())) {
             return new ResponseEntity(new Mensaje("El Nombre es obligatorio"), HttpStatus.BAD_REQUEST);

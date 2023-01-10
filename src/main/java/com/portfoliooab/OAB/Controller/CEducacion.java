@@ -82,6 +82,10 @@ public class CEducacion {
         if (!sEducacion.existsById(id)) {
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
+        //Compara nombre de educacion
+        if (sEducacion.existsByNombreEd(dtoeducacion.getNombreEd()) && sEducacion.getByNombreEd(dtoeducacion.getNombreEd()).get().getId() != id) {
+            return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
+        }
         //El Nombre es obligatorio
         if (StringUtils.isBlank(dtoeducacion.getNombreEd())) {
             return new ResponseEntity(new Mensaje("El campo no puede estar vacio"), HttpStatus.BAD_REQUEST);
